@@ -1,0 +1,1317 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>선교단체 유형 테스트</title>
+
+  <style>
+
+    /* =========================================
+       전체 기본 설정
+       ========================================= */
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff8f0;
+      color: #333;
+    }
+
+
+    /* =========================================
+       전체 컨테이너
+       ========================================= */
+
+    .container {
+      width: 90%;
+      max-width: 650px;
+
+      margin: 70px auto;
+
+      background: white;
+
+      padding: 40px;
+
+      border-radius: 20px;
+
+      box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.1);
+
+      text-align: center;
+    }
+
+
+    /* =========================================
+       첫 시작 화면
+       ========================================= */
+
+    #startScreen {
+      display: block;
+    }
+
+
+    #startScreen .main-icon {
+      font-size: 70px;
+      margin-bottom: 15px;
+    }
+
+
+    #startScreen h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+
+    #startScreen .description {
+      color: #777;
+
+      line-height: 1.8;
+
+      margin-bottom: 35px;
+    }
+
+
+    /* 설문 시작 버튼 */
+
+    .start-button {
+      width: 100%;
+
+      padding: 17px;
+
+      border: none;
+
+      border-radius: 12px;
+
+      background: #ff9f43;
+
+      color: white;
+
+      font-size: 18px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+      transition: 0.2s;
+    }
+
+
+    .start-button:hover {
+      background: #e88b2d;
+
+      transform: translateY(-2px);
+    }
+
+
+    /* =========================================
+       설문 화면
+       ========================================= */
+
+    #survey {
+      display: none;
+    }
+
+
+    .survey-title {
+      margin-bottom: 25px;
+    }
+
+
+    .survey-title h1 {
+      font-size: 25px;
+      margin-bottom: 8px;
+    }
+
+
+    .survey-title p {
+      color: #777;
+      margin: 0;
+    }
+
+
+    /* =========================================
+       진행 상황
+       ========================================= */
+
+    .progress {
+      margin-bottom: 30px;
+
+      color: #999;
+
+      font-size: 14px;
+    }
+
+
+    .progress-bar {
+      width: 100%;
+
+      height: 10px;
+
+      background: #eee;
+
+      border-radius: 10px;
+
+      overflow: hidden;
+
+      margin-top: 10px;
+    }
+
+
+    .progress-fill {
+      height: 100%;
+
+      width: 0%;
+
+      background: #ff9f43;
+
+      transition:
+        width 0.3s ease;
+    }
+
+
+    /* =========================================
+       질문
+       ========================================= */
+
+    .question {
+      margin-top: 30px;
+
+      margin-bottom: 30px;
+    }
+
+
+    .question h2 {
+      font-size: 28px;
+
+      margin-bottom: 30px;
+    }
+
+
+    /* =========================================
+       선택지
+       ========================================= */
+
+    .options {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 15px;
+    }
+
+
+    .option {
+      padding: 18px;
+
+      border: 2px solid #eee;
+
+      border-radius: 12px;
+
+      background: white;
+
+      cursor: pointer;
+
+      font-size: 16px;
+
+      transition: 0.2s;
+    }
+
+
+    .option:hover {
+      border-color: #ff9f43;
+
+      background: #fff4e6;
+
+      transform: translateY(-2px);
+    }
+
+
+    /* =========================================
+       추천 안내 화면
+       ========================================= */
+
+    #recommendationIntro {
+      display: none;
+    }
+
+
+    #recommendationIntro h1 {
+      font-size: 28px;
+
+      margin-bottom: 20px;
+    }
+
+
+    #recommendationIntro p {
+      color: #777;
+
+      line-height: 1.8;
+
+      margin-bottom: 30px;
+    }
+
+
+    .recommend-button {
+      width: 100%;
+
+      padding: 16px;
+
+      border: none;
+
+      border-radius: 12px;
+
+      background: #ff9f43;
+
+      color: white;
+
+      font-size: 18px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+      transition: 0.2s;
+    }
+
+
+    .recommend-button:hover {
+      background: #e88b2d;
+
+      transform: translateY(-2px);
+    }
+
+
+    /* =========================================
+       결과 화면
+       ========================================= */
+
+    #result {
+      display: none;
+    }
+
+
+    #result h1 {
+      margin-bottom: 10px;
+    }
+
+
+    .result-description {
+      color: #777;
+
+      margin-bottom: 30px;
+    }
+
+
+    /* =========================================
+       1위
+       ========================================= */
+
+    .first-place {
+      padding: 35px 20px;
+
+      margin-bottom: 25px;
+
+      border-radius: 20px;
+
+      background: #fff4df;
+
+      border: 3px solid #ffcf8b;
+
+      box-shadow:
+        0 5px 15px
+        rgba(0, 0, 0, 0.08);
+    }
+
+
+    .first-place .rank {
+      font-size: 18px;
+
+      font-weight: bold;
+
+      color: #e67e22;
+
+      margin-bottom: 10px;
+    }
+
+
+    .first-place .club {
+      font-size: 48px;
+
+      font-weight: bold;
+
+      margin-bottom: 15px;
+    }
+
+
+    .first-place .score {
+      font-size: 18px;
+
+      color: #e67e22;
+
+      font-weight: bold;
+    }
+
+
+    .first-place .message {
+      margin-top: 15px;
+
+      color: #666;
+
+      line-height: 1.6;
+    }
+
+
+    /* =========================================
+       2위 / 3위
+       ========================================= */
+
+    .other-recommendations {
+      display: flex;
+
+      gap: 12px;
+
+      margin-top: 10px;
+    }
+
+
+    .other-place {
+      flex: 1;
+
+      padding: 18px 10px;
+
+      background: #fafafa;
+
+      border-radius: 15px;
+
+      border: 1px solid #eee;
+    }
+
+
+    .other-place .rank {
+      font-size: 14px;
+
+      color: #999;
+
+      margin-bottom: 8px;
+    }
+
+
+    .other-place .club {
+      font-size: 21px;
+
+      font-weight: bold;
+
+      margin-bottom: 8px;
+    }
+
+
+    .other-place .score {
+      font-size: 13px;
+
+      color: #999;
+    }
+
+
+    /* =========================================
+       다시 하기 버튼
+       ========================================= */
+
+    .restart {
+      width: 100%;
+
+      padding: 15px;
+
+      margin-top: 30px;
+
+      border: none;
+
+      border-radius: 12px;
+
+      background: #777;
+
+      color: white;
+
+      font-size: 16px;
+
+      cursor: pointer;
+    }
+
+
+    .restart:hover {
+      background: #555;
+    }
+
+
+    /* =========================================
+       모바일 화면
+       ========================================= */
+
+    @media (max-width: 500px) {
+
+      .container {
+        padding: 25px;
+
+        margin: 40px auto;
+      }
+
+
+      .options {
+        grid-template-columns: 1fr;
+      }
+
+
+      .question h2 {
+        font-size: 23px;
+      }
+
+
+      .first-place .club {
+        font-size: 38px;
+      }
+
+
+      .other-recommendations {
+        flex-direction: column;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <div class="container">
+
+
+    <!-- =====================================
+         ① 첫 시작 화면
+         ===================================== -->
+
+    <div id="startScreen">
+
+
+      <div class="main-icon">
+        ⛪ 
+      </div>
+
+
+      <h1>
+        ✝ 선교단체 유형 테스트 ✝
+      </h1>
+
+
+      <p class="description">
+
+        나에게 맞는 선교단체는??<br>
+
+        여러분의 성향에 맞는 선교단체를 추천해드려요!<br><br>
+
+        지금부터 본인의 성향에 대한 질문이 진행됩니다.<br>
+
+        각 질문에 가장 잘 맞는 답변을 선택해주세요.
+
+      </p>
+
+
+      <button
+        class="start-button"
+        onclick="startSurvey()">
+
+        설문 시작하기
+
+      </button>
+
+
+    </div>
+
+
+
+    <!-- =====================================
+         ② 설문 화면
+         ===================================== -->
+
+    <div id="survey">
+
+
+      <div class="survey-title">
+
+        <h1>
+          ⛪ 선교단체 유형 테스트
+        </h1>
+
+        <p>
+          본인의 성향에 가장 가까운 답을 선택해주세요.
+        </p>
+
+      </div>
+
+
+      <!-- 진행 상황 -->
+
+      <div class="progress">
+
+        <span id="progressText">
+          1 / 10
+        </span>
+
+
+        <div class="progress-bar">
+
+          <div
+            id="progressFill"
+            class="progress-fill">
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- 질문 -->
+
+      <div class="question">
+
+        <h2 id="questionText">
+          나는 신앙생활을 꽤 오래 했다.
+        </h2>
+
+      </div>
+
+
+      <!-- 선택지 -->
+
+      <div
+        id="options"
+        class="options">
+      </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================
+         ③ 추천 안내 화면
+         ===================================== -->
+
+    <div id="recommendationIntro">
+
+
+      <h1>
+        ⛪ 당신에게 맞는 선교단체는?
+      </h1>
+
+
+      <p>
+
+        모든 질문에 답변했어요!<br>
+
+        여러분의 응답을 바탕으로<br>
+
+        잘 맞을 만한 선교단체를 추천해드릴게요.
+
+      </p>
+
+
+      <button
+        class="recommend-button"
+        onclick="showResult()">
+
+        추천 결과 보기
+
+      </button>
+
+
+    </div>
+
+
+
+    <!-- =====================================
+         ④ 결과 화면
+         ===================================== -->
+
+    <div id="result">
+
+
+      <h1>
+        🎉 당신의 추천 선교단체
+      </h1>
+
+
+      <p class="result-description">
+
+        응답 결과를 바탕으로<br>
+
+        가장 잘 맞는 선교단체를 찾았어요.
+
+      </p>
+
+
+      <!-- 1위 -->
+
+      <div
+        id="firstPlace"
+        class="first-place">
+      </div>
+
+
+      <!-- 2위 / 3위 -->
+
+      <div
+        id="otherRecommendations"
+        class="other-recommendations">
+      </div>
+
+
+      <!-- 다시 하기 -->
+
+      <button
+        class="restart"
+        onclick="restartSurvey()">
+
+        다시 조사하기
+
+      </button>
+
+
+    </div>
+
+
+  </div>
+
+
+
+  <script>
+
+
+    /* =========================================
+       1. 동아리별 결과 값
+       ========================================= */
+
+    const clubs = {
+      sfc: [1,1,-2,-2,1,-2,-2,-1,2,-1],
+      cam: [-1,1,-1,-2,-2,-2,-2,2,2,1],
+      cmf: [-1,-1,-1,1,-1,1,-1,1,1,-1],
+      duru: [1,1,2,1,-1,-2,2,-1,-1,-1],
+      absk: [-1,1,1,-1,1,1,-1,1,-1,1],
+      ivf: [1,2,-1,-1,1,-1,-1,1,2,-1],
+      ywam: [-2,-1,-1,2,1,2,-1,-2,1,1],
+      navi: [-1,1,1,-1,1,-1,-1,1,-1,1],
+      ubf: [-1,1,2,-2,1,1,-1,2,-1,2],
+      hanlove: [1,-1,2,1,1,2,-1,1,-1,1],
+      ldi: [-1,-1,-1,1,1,2,-1,-1,-1,1],
+      ccc: [1,1,2,1,2,-1,-1,1,1,1],
+      martus: [1,1,-2,-1,-1,1,-2,2,2,2],
+      cmi: [1,1,2,1,-1,-2,1,1,-1,-1],
+      esf: [-1,2,1,2,1,-2,1,-1,2,2],
+      joy: [-1,1,-1,1,1,-1,-1,-1,2,2]
+    };
+
+
+
+    /* =========================================
+       2. 동아리 이름
+       ========================================= */
+
+       const clubNames = {
+        sfc: "🍎 SFC",
+        cam: "🍌 CAM",
+        cmf: "🍓 CMF",
+        duru: "🍇 두루선교회",
+        absk: "🍉 ABSK",
+        ivf: "🍑 IVF",
+        ywam: "🍊 YWAM",
+        navi: "🥭 네비게이토",
+        ubf: "🍐 UBF",
+        hanlove: "🍋 한사랑선교회",
+        ldi: "🍈 LDI",
+        ccc: "🍒 CCC",
+        martus: "🥝 마르투스선교회",
+        cmi: "🍅 CMI",
+        esf: "🍏 ESF",
+        joy: "🥑 JOY"
+      };
+
+
+    
+    /* =========================================
+       3. 문제 번호
+       ========================================= */
+
+    const qIndex = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10'];
+
+
+
+    /* =========================================
+       4. 문제 내용
+       ========================================= */
+
+    const questionss = {
+      q1: "1. 나는 신앙생활을 꽤 오래 했다.",
+      q2: "2. 나는 감성적으로 생각하기보다는 이성적으로 분석하고 탐구하는 것을 더 좋아한다.",
+      q3: "3. 나는 여러 사람들을 한꺼번에 만나기보다는 일대일로 사람을 사귀기를 선호한다.",
+      q4: "4. 나는 감정이 북받쳐 오를 때가 종종 있다.",
+      q5: "5. 나는 새로운 사람들을 만나는 게 좋다.",
+      q6: "6. 나는 다양한 출신, 국적의 사람들을 만나보고 싶다. or 나는 외국인이다.",
+      q7: "7. 나는 학교 안보다 밖이 더 좋다.",
+      q8: "8. 나는 시끌시끌한 분위기보다는 차분한 분위기가 더 좋다.",
+      q9: "9. 나는 어려운 일이 있으면 전문가인 선배에게 도움을 구하기보다는 친구들과 함께 고민할 것이다.",
+      q10: "10. 서로에게 크게 간섭하지 않는 자유로운 분위기 vs 한 명 한 명을 적극적으로 케어해주는 분위기 중 나는 후자를 더 선호한다."
+
+    };
+
+
+
+    /* =========================================
+       5. 선택지
+       ========================================= */
+
+    const choices = [
+
+      {
+        text: "매우 그렇다",
+        score: 2
+      },
+
+      {
+        text: "그렇다",
+        score: 1
+      },
+
+      {
+        text: "아니다",
+        score: -1
+      },
+
+      {
+        text: "매우 아니다",
+        score: -2
+      }
+
+    ];
+
+
+
+    /* =========================================
+       5. 현재 질문 번호
+       ========================================= */
+
+    let currentQuestion = 0;
+
+
+
+    /* =========================================
+       6. 사용자 답변
+       ========================================= */
+
+    const answers = [];
+
+
+
+    /* =========================================
+       7. HTML 요소 가져오기
+       ========================================= */
+
+    const startScreen =
+      document.getElementById(
+        "startScreen"
+      );
+
+
+    const survey =
+      document.getElementById(
+        "survey"
+      );
+
+
+    const recommendationIntro =
+      document.getElementById(
+        "recommendationIntro"
+      );
+
+
+    const result =
+      document.getElementById(
+        "result"
+      );
+
+
+    const questionText =
+      document.getElementById(
+        "questionText"
+      );
+
+
+    const options =
+      document.getElementById(
+        "options"
+      );
+
+
+    const progressText =
+      document.getElementById(
+        "progressText"
+      );
+
+
+    const progressFill =
+      document.getElementById(
+        "progressFill"
+      );
+
+
+    const firstPlace =
+      document.getElementById(
+        "firstPlace"
+      );
+
+
+    const otherRecommendations =
+      document.getElementById(
+        "otherRecommendations"
+      );
+
+
+
+    /* =========================================
+       8. 설문 시작
+       ========================================= */
+
+    function startSurvey() {
+
+
+      /*
+        첫 화면 숨기기
+      */
+
+      startScreen.style.display =
+        "none";
+
+
+      /*
+        설문 화면 보여주기
+      */
+
+      survey.style.display =
+        "block";
+
+
+      /*
+        첫 번째 질문 표시
+      */
+
+      currentQuestion = 0;
+
+      showQuestion();
+
+    }
+
+
+
+    /* =========================================
+       9. 질문 표시
+       ========================================= */
+
+    function showQuestion() {
+
+
+      /*
+        질문 표시
+      */
+
+      questionText.textContent =
+       questionss[qIndex[currentQuestion]];
+
+
+
+      /*
+        진행 상황 표시
+      */
+
+      progressText.textContent =
+        `${currentQuestion + 1} / ${qIndex.length}`;
+
+
+
+      /*
+        진행률 계산
+      */
+
+      const progress =
+        ((currentQuestion + 1)
+        / qIndex.length) * 100;
+
+
+
+      progressFill.style.width =
+        `${progress}%`;
+
+
+
+      /*
+        기존 선택지 삭제
+      */
+
+      options.innerHTML = "";
+
+
+
+      /*
+        선택지 만들기
+      */
+
+      choices.forEach(choice => {
+
+
+        const button =
+          document.createElement(
+            "button"
+          );
+
+
+        button.className =
+          "option";
+
+
+        button.textContent =
+          choice.text;
+
+
+
+        /*
+          답변을 클릭했을 때
+        */
+
+        button.addEventListener(
+          "click",
+          function() {
+
+
+            /*
+              답변 저장
+            */
+            answers.push(choice.score);
+
+
+            /*
+              다음 질문
+            */
+
+            nextQuestion();
+
+          }
+        );
+
+
+        options.appendChild(
+          button
+        );
+
+      });
+
+    }
+
+
+
+    /* =========================================
+       10. 다음 질문
+       ========================================= */
+
+    function nextQuestion() {
+
+
+      currentQuestion++;
+
+
+      /*
+        아직 질문이 남았다면
+      */
+
+      if (
+        currentQuestion
+        < qIndex.length
+      ) {
+
+        showQuestion();
+
+      }
+
+
+      /*
+        모든 질문이 끝났다면
+        추천 안내 화면으로 이동
+      */
+
+      else {
+
+
+        survey.style.display =
+          "none";
+
+
+        recommendationIntro.style.display =
+          "block";
+
+      }
+
+    }
+
+
+
+    /* =========================================
+       11. 추천 결과 계산
+       ========================================= */
+
+    function showResult() {
+
+
+      /*
+        추천 점수 저장
+      */
+
+      const cosSim =
+        {};
+
+
+
+      /*
+        설문 결과와 각 동아리의 결과값 코사인 유사도 계산
+      */
+
+      let ansNorm = Math.hypot(...answers);
+
+      for (
+        const [clubName, score]
+        of Object.entries(clubs)
+      ) {
+        
+        let compNorm = Math.hypot(...score);
+
+        let dotProd = 0;
+        
+        for (let i = 0; i < 10; i++) {
+          dotProd += answers[i] * score[i];
+        }
+
+        cosSim[clubName] = dotProd / (ansNorm * compNorm);
+
+      }
+
+
+
+      /* =====================================
+         점수가 높은 순으로 정렬
+         ===================================== */
+
+      const sortedRecommendations =
+        Object.entries(
+          cosSim
+        )
+        .sort(
+          (a, b) => b[1] - a[1]
+        )
+        .slice(0, 5);
+
+
+
+      /* =====================================
+         기존 결과 삭제
+         ===================================== */
+
+      firstPlace.innerHTML = "";
+
+      otherRecommendations.innerHTML =
+        "";
+
+
+
+      /* =====================================
+         1위 표시
+         ===================================== */
+
+      if (
+        sortedRecommendations.length
+        > 0
+      ) {
+
+
+        const [
+          firstClub,
+          firstScore
+        ] =
+          sortedRecommendations[0];
+
+
+
+        firstPlace.innerHTML = `
+
+          <div class="rank">
+            🏆 1위
+          </div>
+
+          <div class="club">
+            ${clubNames[firstClub]}
+          </div>
+
+          <div class="score">
+            추천 점수
+            ${(firstScore*100).toFixed(1)}점
+          </div>
+
+          <div class="message">
+            당신의 성향과 가장 
+            잘 맞는 선교단체에요!
+          </div>
+
+        `;
+
+      }
+
+
+
+      /* =====================================
+         2위 / 3위 표시
+         ===================================== */
+
+      sortedRecommendations
+        .slice(1)
+        .forEach(
+          ([club, score], index) => {
+
+
+            const div =
+              document.createElement(
+                "div"
+              );
+
+
+            div.className =
+              "other-place";
+
+
+            div.innerHTML = `
+
+              <div class="rank">
+                ${index + 2}위
+              </div>
+
+              <div class="club">
+                ${clubNames[club]}
+              </div>
+
+              <div class="score">
+                ${(score*100).toFixed(1)}점
+              </div>
+
+            `;
+
+
+            otherRecommendations
+              .appendChild(div);
+
+          }
+        );
+
+
+
+      /* =====================================
+         화면 전환
+         ===================================== */
+
+      recommendationIntro.style.display =
+        "none";
+
+
+      result.style.display =
+        "block";
+
+
+      /*
+        결과 화면 맨 위로 이동
+      */
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+
+    /* =========================================
+       12. 다시 조사하기
+       ========================================= */
+
+    function restartSurvey() {
+
+
+      /*
+        첫 번째 질문으로 초기화
+      */
+
+      currentQuestion = 0;
+
+
+
+      /*
+        답변 초기화
+      */
+
+      answers.length = 0;
+
+
+
+      /*
+        결과 화면 숨기기
+      */
+
+      result.style.display =
+        "none";
+
+
+      /*
+        추천 안내 화면 숨기기
+      */
+
+      recommendationIntro.style.display =
+        "none";
+
+
+      /*
+        시작 화면 보여주기
+      */
+
+      startScreen.style.display =
+        "block";
+
+    }
+
+
+
+    /* =========================================
+       13. 프로그램 시작
+       ========================================= */
+
+    /*
+      처음에는 시작 화면만 보여준다.
+    */
+
+  </script>
+
+</body>
+
+</html>
+```
