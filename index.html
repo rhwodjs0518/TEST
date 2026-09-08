@@ -1,9 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
   <title>선교단체 유형 테스트</title>
 
@@ -56,18 +59,15 @@
       display: block;
     }
 
-
     #startScreen .main-icon {
       font-size: 70px;
       margin-bottom: 15px;
     }
 
-
     #startScreen h1 {
       font-size: 32px;
       margin-bottom: 20px;
     }
-
 
     #startScreen .description {
       color: #777;
@@ -78,7 +78,9 @@
     }
 
 
-    /* 설문 시작 버튼 */
+    /* =========================================
+       설문 시작 버튼
+       ========================================= */
 
     .start-button {
       width: 100%;
@@ -102,7 +104,6 @@
       transition: 0.2s;
     }
 
-
     .start-button:hover {
       background: #e88b2d;
 
@@ -118,17 +119,14 @@
       display: none;
     }
 
-
     .survey-title {
       margin-bottom: 25px;
     }
-
 
     .survey-title h1 {
       font-size: 25px;
       margin-bottom: 8px;
     }
-
 
     .survey-title p {
       color: #777;
@@ -148,7 +146,6 @@
       font-size: 14px;
     }
 
-
     .progress-bar {
       width: 100%;
 
@@ -162,7 +159,6 @@
 
       margin-top: 10px;
     }
-
 
     .progress-fill {
       height: 100%;
@@ -186,7 +182,6 @@
       margin-bottom: 30px;
     }
 
-
     .question h2 {
       font-size: 28px;
 
@@ -207,8 +202,14 @@
       gap: 15px;
     }
 
-
     .option {
+
+      /*
+       * 모바일 브라우저에서
+       * 터치 후 hover가 남는 현상을 방지
+       */
+      -webkit-tap-highlight-color: transparent;
+
       padding: 18px;
 
       border: 2px solid #eee;
@@ -221,16 +222,59 @@
 
       font-size: 16px;
 
-      transition: 0.2s;
+      transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.1s ease;
+
+      /*
+       * 버튼 기본 스타일 제거
+       */
+      appearance: none;
+      -webkit-appearance: none;
     }
 
 
-    .option:hover {
-      border-color: #ff9f43;
+    /* PC에서 마우스를 올렸을 때만 hover 적용 */
+    @media (hover: hover) and (pointer: fine) {
+
+      .option:hover {
+
+        border-color: #ff9f43;
+
+        background: #fff4e6;
+
+        transform: translateY(-2px);
+      }
+
+    }
+
+
+    /*
+     * 실제로 누르고 있는 순간
+     *
+     * 모바일에서는 이 효과만 사용
+     */
+    .option:active {
 
       background: #fff4e6;
 
-      transform: translateY(-2px);
+      border-color: #ff9f43;
+
+      transform: scale(0.98);
+    }
+
+
+    /*
+     * 버튼에 포커스가 남아 색이 유지되는 현상 방지
+     */
+    .option:focus {
+      outline: none;
+    }
+
+    .option:focus-visible {
+      outline: 2px solid #ff9f43;
+      outline-offset: 2px;
     }
 
 
@@ -242,13 +286,11 @@
       display: none;
     }
 
-
     #recommendationIntro h1 {
       font-size: 28px;
 
       margin-bottom: 20px;
     }
-
 
     #recommendationIntro p {
       color: #777;
@@ -258,6 +300,10 @@
       margin-bottom: 30px;
     }
 
+
+    /* =========================================
+       추천 결과 버튼
+       ========================================= */
 
     .recommend-button {
       width: 100%;
@@ -281,7 +327,6 @@
       transition: 0.2s;
     }
 
-
     .recommend-button:hover {
       background: #e88b2d;
 
@@ -297,11 +342,9 @@
       display: none;
     }
 
-
     #result h1 {
       margin-bottom: 10px;
     }
-
 
     .result-description {
       color: #777;
@@ -315,6 +358,7 @@
        ========================================= */
 
     .first-place {
+
       padding: 35px 20px;
 
       margin-bottom: 25px;
@@ -330,7 +374,6 @@
         rgba(0, 0, 0, 0.08);
     }
 
-
     .first-place .rank {
       font-size: 18px;
 
@@ -341,7 +384,6 @@
       margin-bottom: 10px;
     }
 
-
     .first-place .club {
       font-size: 48px;
 
@@ -350,7 +392,6 @@
       margin-bottom: 15px;
     }
 
-
     .first-place .score {
       font-size: 18px;
 
@@ -358,7 +399,6 @@
 
       font-weight: bold;
     }
-
 
     .first-place .message {
       margin-top: 15px;
@@ -374,6 +414,7 @@
        ========================================= */
 
     .other-recommendations {
+
       display: flex;
 
       gap: 12px;
@@ -381,8 +422,8 @@
       margin-top: 10px;
     }
 
-
     .other-place {
+
       flex: 1;
 
       padding: 18px 10px;
@@ -394,7 +435,6 @@
       border: 1px solid #eee;
     }
 
-
     .other-place .rank {
       font-size: 14px;
 
@@ -403,7 +443,6 @@
       margin-bottom: 8px;
     }
 
-
     .other-place .club {
       font-size: 21px;
 
@@ -411,7 +450,6 @@
 
       margin-bottom: 8px;
     }
-
 
     .other-place .score {
       font-size: 13px;
@@ -425,6 +463,7 @@
        ========================================= */
 
     .restart {
+
       width: 100%;
 
       padding: 15px;
@@ -444,7 +483,6 @@
       cursor: pointer;
     }
 
-
     .restart:hover {
       background: #555;
     }
@@ -457,6 +495,7 @@
     @media (max-width: 500px) {
 
       .container {
+
         padding: 25px;
 
         margin: 40px auto;
@@ -464,37 +503,54 @@
 
 
       .options {
+
         grid-template-columns: 1fr;
       }
 
 
       .question h2 {
+
         font-size: 23px;
       }
 
 
       .first-place .club {
+
         font-size: 38px;
       }
 
 
       .other-recommendations {
+
         flex-direction: column;
       }
 
-    }
 
-    @media (hover: none) {
+      /*
+       * 모바일에서는 hover 효과를 완전히 사용하지 않음
+       */
       .option:hover {
+
         border-color: #eee;
+
         background: white;
+
         transform: none;
       }
-    
+
+
+      /*
+       * 터치하는 순간에만 살짝 눌리는 느낌
+       */
       .option:active {
-        background: #fff4e6;
+
         border-color: #ff9f43;
+
+        background: #fff4e6;
+
+        transform: scale(0.98);
       }
+
     }
 
   </style>
@@ -516,7 +572,7 @@
 
 
       <div class="main-icon">
-        ⛪ 
+        ⛪
       </div>
 
 
@@ -705,7 +761,6 @@
   </div>
 
 
-
   <script>
 
 
@@ -714,57 +769,101 @@
        ========================================= */
 
     const clubs = {
-      sfc: [1,1,-2,-2,1,-2,-2,-1,2,-1],
-      cam: [-1,1,-1,-2,-2,-2,-2,2,2,1],
-      cmf: [-1,-1,-1,1,-1,1,-1,1,1,-1],
-      duru: [1,1,2,1,-1,-2,2,-1,-1,-1],
-      absk: [-1,1,1,-1,1,1,-1,1,-1,1],
-      ivf: [1,2,-1,-1,1,-1,-1,1,2,-1],
-      ywam: [-2,-1,-1,2,1,2,-1,-2,1,1],
-      navi: [-1,1,1,-1,1,-1,-1,1,-1,1],
-      ubf: [-1,1,2,-2,1,1,-1,2,-1,2],
-      hanlove: [1,-1,2,1,1,2,-1,1,-1,1],
-      ldi: [-1,-1,-1,1,1,2,-1,-1,-1,1],
-      ccc: [1,1,2,1,2,-1,-1,1,1,1],
-      martus: [1,1,-2,-1,-1,1,-2,2,2,2],
-      cmi: [1,1,2,1,-1,-2,1,1,-1,-1],
-      esf: [-1,2,1,2,1,-2,1,-1,2,2],
-      joy: [-1,1,-1,1,1,-1,-1,-1,2,2]
-    };
 
+      sfc: [1,1,-2,-2,1,-2,-2,-1,2,-1],
+
+      cam: [-1,1,-1,-2,-2,-2,-2,2,2,1],
+
+      cmf: [-1,-1,-1,1,-1,1,-1,1,1,-1],
+
+      duru: [1,1,2,1,-1,-2,2,-1,-1,-1],
+
+      absk: [-1,1,1,-1,1,1,-1,1,-1,1],
+
+      ivf: [1,2,-1,-1,1,-1,-1,1,2,-1],
+
+      ywam: [-2,-1,-1,2,1,2,-1,-2,1,1],
+
+      navi: [-1,1,1,-1,1,-1,-1,1,-1,1],
+
+      ubf: [-1,1,2,-2,1,1,-1,2,-1,2],
+
+      hanlove: [1,-1,2,1,1,2,-1,1,-1,1],
+
+      ldi: [-1,-1,-1,1,1,2,-1,-1,-1,1],
+
+      ccc: [1,1,2,1,2,-1,-1,1,1,1],
+
+      martus: [1,1,-2,-1,-1,1,-2,2,2,2],
+
+      cmi: [1,1,2,1,-1,-2,1,1,-1,-1],
+
+      esf: [-1,2,1,2,1,-2,1,-1,2,2],
+
+      joy: [-1,1,-1,1,1,-1,-1,-1,2,2]
+
+    };
 
 
     /* =========================================
        2. 동아리 이름
        ========================================= */
 
-       const clubNames = {
-        sfc: "🍎 SFC",
-        cam: "🍌 CAM",
-        cmf: "🍓 CMF",
-        duru: "🍇 두루선교회",
-        absk: "🍉 ABSK",
-        ivf: "🍑 IVF",
-        ywam: "🍊 YWAM",
-        navi: "🥭 네비게이토",
-        ubf: "🍐 UBF",
-        hanlove: "🍋 한사랑선교회",
-        ldi: "🍈 LDI",
-        ccc: "🍒 CCC",
-        martus: "🥝 마르투스선교회",
-        cmi: "🍅 CMI",
-        esf: "🍏 ESF",
-        joy: "🥑 JOY"
-      };
+    const clubNames = {
+
+      sfc: "🍎 SFC",
+
+      cam: "🍌 CAM",
+
+      cmf: "🍓 CMF",
+
+      duru: "🍇 두루선교회",
+
+      absk: "🍉 ABSK",
+
+      ivf: "🍑 IVF",
+
+      ywam: "🍊 YWAM",
+
+      navi: "🥭 네비게이토",
+
+      ubf: "🍐 UBF",
+
+      hanlove: "🍋 한사랑선교회",
+
+      ldi: "🍈 LDI",
+
+      ccc: "🍒 CCC",
+
+      martus: "🥝 마르투스선교회",
+
+      cmi: "🍅 CMI",
+
+      esf: "🍏 ESF",
+
+      joy: "🥑 JOY"
+
+    };
 
 
-    
     /* =========================================
        3. 문제 번호
        ========================================= */
 
-    const qIndex = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10'];
+    const qIndex = [
 
+      'q1',
+      'q2',
+      'q3',
+      'q4',
+      'q5',
+      'q6',
+      'q7',
+      'q8',
+      'q9',
+      'q10'
+
+    ];
 
 
     /* =========================================
@@ -772,19 +871,38 @@
        ========================================= */
 
     const questionss = {
-      q1: "1. 나는 신앙생활을 꽤 오래 했다.",
-      q2: "2. 나는 감성적으로 생각하기보다는 이성적으로 분석하고 탐구하는 것을 더 좋아한다.",
-      q3: "3. 나는 여러 사람들을 한꺼번에 만나기보다는 일대일로 사람을 사귀기를 선호한다.",
-      q4: "4. 나는 감정이 북받쳐 오를 때가 종종 있다.",
-      q5: "5. 나는 새로운 사람들을 만나는 게 좋다.",
-      q6: "6. 나는 다양한 출신, 국적의 사람들을 만나보고 싶다. or 나는 외국인이다.",
-      q7: "7. 나는 학교 안보다 밖이 더 좋다.",
-      q8: "8. 나는 시끌시끌한 분위기보다는 차분한 분위기가 더 좋다.",
-      q9: "9. 나는 어려운 일이 있으면 전문가인 선배에게 도움을 구하기보다는 친구들과 함께 고민할 것이다.",
-      q10: "10. 서로에게 크게 간섭하지 않는 자유로운 분위기 vs 한 명 한 명을 적극적으로 케어해주는 분위기 중 나는 후자를 더 선호한다."
+
+      q1:
+        "1. 나는 신앙생활을 꽤 오래 했다.",
+
+      q2:
+        "2. 나는 감성적으로 생각하기보다는 이성적으로 분석하고 탐구하는 것을 더 좋아한다.",
+
+      q3:
+        "3. 나는 여러 사람들을 한꺼번에 만나기보다는 일대일로 사람을 사귀기를 선호한다.",
+
+      q4:
+        "4. 나는 감정이 북받쳐 오를 때가 종종 있다.",
+
+      q5:
+        "5. 나는 새로운 사람들을 만나는 게 좋다.",
+
+      q6:
+        "6. 나는 다양한 출신, 국적의 사람들을 만나보고 싶다. or 나는 외국인이다.",
+
+      q7:
+        "7. 나는 학교 안보다 밖이 더 좋다.",
+
+      q8:
+        "8. 나는 시끌시끌한 분위기보다는 차분한 분위기가 더 좋다.",
+
+      q9:
+        "9. 나는 어려운 일이 있으면 전문가인 선배에게 도움을 구하기보다는 친구들과 함께 고민할 것이다.",
+
+      q10:
+        "10. 서로에게 크게 간섭하지 않는 자유로운 분위기 vs 한 명 한 명을 적극적으로 케어해주는 분위기 중 나는 후자를 더 선호한다."
 
     };
-
 
 
     /* =========================================
@@ -816,211 +934,179 @@
     ];
 
 
-
     /* =========================================
-       5. 현재 질문 번호
+       6. 현재 질문 번호
        ========================================= */
 
     let currentQuestion = 0;
 
 
-
     /* =========================================
-       6. 사용자 답변
+       7. 사용자 답변
        ========================================= */
 
     const answers = [];
 
 
-
     /* =========================================
-       7. HTML 요소 가져오기
+       8. HTML 요소 가져오기
        ========================================= */
 
     const startScreen =
-      document.getElementById(
-        "startScreen"
-      );
-
+      document.getElementById("startScreen");
 
     const survey =
-      document.getElementById(
-        "survey"
-      );
-
+      document.getElementById("survey");
 
     const recommendationIntro =
-      document.getElementById(
-        "recommendationIntro"
-      );
-
+      document.getElementById("recommendationIntro");
 
     const result =
-      document.getElementById(
-        "result"
-      );
-
+      document.getElementById("result");
 
     const questionText =
-      document.getElementById(
-        "questionText"
-      );
-
+      document.getElementById("questionText");
 
     const options =
-      document.getElementById(
-        "options"
-      );
-
+      document.getElementById("options");
 
     const progressText =
-      document.getElementById(
-        "progressText"
-      );
-
+      document.getElementById("progressText");
 
     const progressFill =
-      document.getElementById(
-        "progressFill"
-      );
-
+      document.getElementById("progressFill");
 
     const firstPlace =
-      document.getElementById(
-        "firstPlace"
-      );
-
+      document.getElementById("firstPlace");
 
     const otherRecommendations =
-      document.getElementById(
-        "otherRecommendations"
-      );
-
+      document.getElementById("otherRecommendations");
 
 
     /* =========================================
-       8. 설문 시작
+       9. 설문 시작
        ========================================= */
 
     function startSurvey() {
 
+      startScreen.style.display = "none";
 
-      /*
-        첫 화면 숨기기
-      */
-
-      startScreen.style.display =
-        "none";
-
-
-      /*
-        설문 화면 보여주기
-      */
-
-      survey.style.display =
-        "block";
-
-
-      /*
-        첫 번째 질문 표시
-      */
+      survey.style.display = "block";
 
       currentQuestion = 0;
+
+      answers.length = 0;
 
       showQuestion();
 
     }
 
 
-
     /* =========================================
-       9. 질문 표시
+       10. 질문 표시
        ========================================= */
 
     function showQuestion() {
 
+      /*
+       * 기존 버튼의 포커스를 제거
+       *
+       * 모바일에서 이전 버튼이
+       * 계속 선택된 것처럼 보이는 것을 방지
+       */
+      if (document.activeElement) {
+
+        document.activeElement.blur();
+
+      }
+
 
       /*
-        질문 표시
-      */
+       * 질문 표시
+       */
 
       questionText.textContent =
-       questionss[qIndex[currentQuestion]];
-
+        questionss[qIndex[currentQuestion]];
 
 
       /*
-        진행 상황 표시
-      */
+       * 진행 상황 표시
+       */
 
       progressText.textContent =
         `${currentQuestion + 1} / ${qIndex.length}`;
 
 
-
       /*
-        진행률 계산
-      */
+       * 진행률 계산
+       */
 
       const progress =
         ((currentQuestion + 1)
         / qIndex.length) * 100;
 
 
-
       progressFill.style.width =
         `${progress}%`;
 
 
-
       /*
-        기존 선택지 삭제
-      */
+       * 기존 선택지 삭제
+       */
 
       options.innerHTML = "";
 
 
-
       /*
-        선택지 만들기
-      */
+       * 선택지 만들기
+       */
 
       choices.forEach(choice => {
 
-
         const button =
-          document.createElement(
-            "button"
-          );
+          document.createElement("button");
 
 
         button.className =
           "option";
 
 
+        button.type =
+          "button";
+
+
         button.textContent =
           choice.text;
 
 
-
         /*
-          답변을 클릭했을 때
-        */
+         * 답변을 클릭했을 때
+         */
 
         button.addEventListener(
           "click",
           function() {
 
-
             /*
-              답변 저장
-            */
+             * 답변 저장
+             */
+
             answers.push(choice.score);
 
 
             /*
-              다음 질문
-            */
+             * 현재 버튼에서 포커스 제거
+             *
+             * 모바일 브라우저에서
+             * 선택 상태가 남는 것을 방지
+             */
+
+            button.blur();
+
+
+            /*
+             * 다음 질문
+             */
 
             nextQuestion();
 
@@ -1028,29 +1114,25 @@
         );
 
 
-        options.appendChild(
-          button
-        );
+        options.appendChild(button);
 
       });
 
     }
 
 
-
     /* =========================================
-       10. 다음 질문
+       11. 다음 질문
        ========================================= */
 
     function nextQuestion() {
-
 
       currentQuestion++;
 
 
       /*
-        아직 질문이 남았다면
-      */
+       * 아직 질문이 남았다면
+       */
 
       if (
         currentQuestion
@@ -1063,16 +1145,13 @@
 
 
       /*
-        모든 질문이 끝났다면
-        추천 안내 화면으로 이동
-      */
+       * 모든 질문이 끝났다면
+       */
 
       else {
 
-
         survey.style.display =
           "none";
-
 
         recommendationIntro.style.display =
           "block";
@@ -1082,66 +1161,68 @@
     }
 
 
-
     /* =========================================
-       11. 추천 결과 계산
+       12. 추천 결과 계산
        ========================================= */
 
     function showResult() {
 
-
       /*
-        추천 점수 저장
-      */
+       * 추천 점수 저장
+       */
 
-      const cosSim =
-        {};
-
+      const cosSim = {};
 
 
       /*
-        설문 결과와 각 동아리의 결과값 코사인 유사도 계산
-      */
+       * 설문 결과와 각 동아리의
+       * 결과값 코사인 유사도 계산
+       */
 
-      let ansNorm = Math.hypot(...answers);
+      let ansNorm =
+        Math.hypot(...answers);
+
 
       for (
         const [clubName, score]
         of Object.entries(clubs)
       ) {
-        
-        let compNorm = Math.hypot(...score);
+
+        let compNorm =
+          Math.hypot(...score);
 
         let dotProd = 0;
-        
+
+
         for (let i = 0; i < 10; i++) {
-          dotProd += answers[i] * score[i];
+
+          dotProd +=
+            answers[i] * score[i];
+
         }
 
-        cosSim[clubName] = dotProd / (ansNorm * compNorm);
+
+        cosSim[clubName] =
+          dotProd / (ansNorm * compNorm);
 
       }
 
 
-
-      /* =====================================
-         점수가 높은 순으로 정렬
-         ===================================== */
+      /*
+       * 점수가 높은 순으로 정렬
+       */
 
       const sortedRecommendations =
-        Object.entries(
-          cosSim
-        )
-        .sort(
-          (a, b) => b[1] - a[1]
-        )
-        .slice(0, 5);
+        Object.entries(cosSim)
+          .sort(
+            (a, b) => b[1] - a[1]
+          )
+          .slice(0, 5);
 
 
-
-      /* =====================================
-         기존 결과 삭제
-         ===================================== */
+      /*
+       * 기존 결과 삭제
+       */
 
       firstPlace.innerHTML = "";
 
@@ -1149,23 +1230,19 @@
         "";
 
 
-
-      /* =====================================
-         1위 표시
-         ===================================== */
+      /*
+       * 1위 표시
+       */
 
       if (
-        sortedRecommendations.length
-        > 0
+        sortedRecommendations.length > 0
       ) {
-
 
         const [
           firstClub,
           firstScore
         ] =
           sortedRecommendations[0];
-
 
 
         firstPlace.innerHTML = `
@@ -1180,11 +1257,11 @@
 
           <div class="score">
             추천 점수
-            ${(firstScore*100).toFixed(1)}점
+            ${(firstScore * 100).toFixed(1)}점
           </div>
 
           <div class="message">
-            당신의 성향과 가장 
+            당신의 성향과 가장
             잘 맞는 선교단체에요!
           </div>
 
@@ -1193,21 +1270,17 @@
       }
 
 
-
-      /* =====================================
-         2위 / 3위 표시
-         ===================================== */
+      /*
+       * 2위 / 3위 / 4위 / 5위 표시
+       */
 
       sortedRecommendations
         .slice(1)
         .forEach(
           ([club, score], index) => {
 
-
             const div =
-              document.createElement(
-                "div"
-              );
+              document.createElement("div");
 
 
             div.className =
@@ -1225,7 +1298,7 @@
               </div>
 
               <div class="score">
-                ${(score*100).toFixed(1)}점
+                ${(score * 100).toFixed(1)}점
               </div>
 
             `;
@@ -1238,93 +1311,93 @@
         );
 
 
-
-      /* =====================================
-         화면 전환
-         ===================================== */
+      /*
+       * 화면 전환
+       */
 
       recommendationIntro.style.display =
         "none";
-
 
       result.style.display =
         "block";
 
 
       /*
-        결과 화면 맨 위로 이동
-      */
+       * 결과 화면 맨 위로 이동
+       */
 
       window.scrollTo({
+
         top: 0,
+
         behavior: "smooth"
+
       });
 
     }
 
 
-
     /* =========================================
-       12. 다시 조사하기
+       13. 다시 조사하기
        ========================================= */
 
     function restartSurvey() {
 
-
       /*
-        첫 번째 질문으로 초기화
-      */
+       * 첫 번째 질문으로 초기화
+       */
 
       currentQuestion = 0;
 
 
-
       /*
-        답변 초기화
-      */
+       * 답변 초기화
+       */
 
       answers.length = 0;
 
 
-
       /*
-        결과 화면 숨기기
-      */
+       * 결과 화면 숨기기
+       */
 
       result.style.display =
         "none";
 
 
       /*
-        추천 안내 화면 숨기기
-      */
+       * 추천 안내 화면 숨기기
+       */
 
       recommendationIntro.style.display =
         "none";
 
 
       /*
-        시작 화면 보여주기
-      */
+       * 시작 화면 보여주기
+       */
 
       startScreen.style.display =
         "block";
 
+
+      /*
+       * 스크롤 맨 위로 이동
+       */
+
+      window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+      });
+
     }
 
-
-
-    /* =========================================
-       13. 프로그램 시작
-       ========================================= */
-
-    /*
-      처음에는 시작 화면만 보여준다.
-    */
 
   </script>
 
 </body>
 
 </html>
-```
